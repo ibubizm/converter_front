@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { getCurrentRate } from './api/featch'
 import { ConvertPage } from './pages/convertPage/convertPage'
+import { History } from './pages/history/history'
 import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
 import { Course } from './pages/course/course'
@@ -31,9 +32,11 @@ function App() {
         <Tab className="p-3" eventKey="convert" title="Конвертер">
           <ConvertPage />
         </Tab>
+        <Tab className="p-3" eventKey="history" title="История">
+          <History />
+        </Tab>
       </Tabs>
     </div>
   )
 }
-
 export default App

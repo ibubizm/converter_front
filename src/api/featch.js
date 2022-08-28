@@ -1,5 +1,14 @@
 import axios from 'axios'
 
+export const getHistory = async () => {
+  try {
+    const { data } = await axios.get('http://localhost:4000/api/getAll')
+    return data
+  } catch (e) {
+    console.log(e)
+  }
+}
+
 export const getCurrentRate = async () => {
   try {
     const { data } = await axios.get('http://localhost:4000/api/getCurrentRate')
