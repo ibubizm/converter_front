@@ -3,6 +3,10 @@ import { useState } from 'react'
 import ListGroup from 'react-bootstrap/ListGroup'
 import { getHistory } from '../../api/featch'
 
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+
 export const History = () => {
   const [history, setHistory] = useState([])
 
@@ -11,21 +15,28 @@ export const History = () => {
   }, [])
   return (
     <>
-      {history &&
-        history.map((breakpoint) => (
-          <ListGroup
-            key={breakpoint.id}
-            horizontal={breakpoint}
-            className="my-2"
-          >
-            <ListGroup.Item variant="info">
-              Курс на {new Date(breakpoint.date).toLocaleString().split(',')[0]}
-            </ListGroup.Item>
-            <ListGroup.Item>EUR {breakpoint.eur}</ListGroup.Item>
-            <ListGroup.Item>RUB {breakpoint.rub}</ListGroup.Item>
-            <ListGroup.Item>JPY {breakpoint.jpy}</ListGroup.Item>
-          </ListGroup>
-        ))}
+      {history && (
+        <Container>
+          <Row style={{ justifyContent: 'space-around' }}>
+            {history.map((breakpoint) => (
+              <ListGroup
+                key={breakpoint.id}
+                horizontal={breakpoint}
+                className="my-2"
+                style={{ width: '300px' }}
+              >
+                <ListGroup.Item variant="info">
+                  Курс на{' '}
+                  {new Date(breakpoint.date).toLocaleString().split(',')[0]}
+                </ListGroup.Item>
+                <ListGroup.Item>EUR {breakpoint.eur}</ListGroup.Item>
+                <ListGroup.Item>RUB {breakpoint.rub}</ListGroup.Item>
+                <ListGroup.Item>JPY {breakpoint.jpy}</ListGroup.Item>
+              </ListGroup>
+            ))}
+          </Row>
+        </Container>
+      )}
     </>
   )
 }

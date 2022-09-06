@@ -1,0 +1,19 @@
+.navbar {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  color: #fff;
+  padding: 0 30px;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
+.username {
+  font-weight: 700;
+  font-size: 20px;
+
+  margin-right: 10px;
+}

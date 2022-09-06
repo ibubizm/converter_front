@@ -1,41 +1,43 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { useEffect } from 'react'
 import { useState } from 'react'
-import { getCurrentRate } from './api/featch'
-import { ConvertPage } from './pages/convertPage/convertPage'
-import { History } from './pages/history/history'
-import Tab from 'react-bootstrap/Tab'
-import Tabs from 'react-bootstrap/Tabs'
-import { Course } from './pages/course/course'
+import { Registration } from './pages/auth/registration'
+import { Route, Routes } from 'react-router-dom'
+import { Auth } from './pages/auth/auth'
+import { Main } from './pages/main/main'
+import { UserContext } from './context/context'
+import { useEffect } from 'react'
+import { auth } from './api/authApi'
+import { Statusbar } from './components/statusbar/statusbar'
 
 function App() {
-  const [currentCourese, setCurrentCourse] = useState({})
-  const [activeLink, setActivelink] = useState('course')
-
+  const [isAuth, setIsAuth] = useState(false)
+  const [user, setUser] = useState({})
   useEffect(() => {
-    getCurrentRate().then((data) => {
-      setCurrentCourse(data[0])
+    auth().then((authData) => {
+      if (authData) {
+        console.log(authData)
+        setUser(authData)
+        setIsAuth(true)
+      }
     })
   }, [])
-
   return (
     <div className="App">
-      <Tabs
-        id="controlled-tab-example"
-        activeKey={activeLink}
-        onSelect={(k) => setActivelink(k)}
-        className="mb-3"
-      >
-        <Tab className="p-3" eventKey="course" title="Курсы валют">
-          <Course currentCourese={currentCourese} />
-        </Tab>
-        <Tab className="p-3" eventKey="convert" title="Конвертер">
-          <ConvertPage />
-        </Tab>
-        <Tab className="p-3" eventKey="history" title="История">
-          <History />
-        </Tab>
-      </Tabs>
+      <UserContext.Provider value={{ isAuth, setIsAuth, user, setUser }}>
+        <Statusbar />
+        <Routes>
+          {isAuth ? (
+            <>
+              <Route path="/" element={<Main />} />
+            </>
+          ) : (
+            <>
+              <Route path="registration" element={<Registration />} />
+              <Route path="login" element={<Auth />} />
+            </>
+          )}
+        </Routes>
+      </UserContext.Provider>
     </div>
   )
 }

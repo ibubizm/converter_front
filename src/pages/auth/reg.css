@@ -1,0 +1,11 @@
+.cover {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reg__card {
+  padding: 20px 30px;
+  width: 30rem;
+}
