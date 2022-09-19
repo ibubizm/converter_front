@@ -1,6 +1,5 @@
 import { useContext } from 'react'
 import Button from 'react-bootstrap/esm/Button'
-import Container from 'react-bootstrap/esm/Container'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { useNavigate } from 'react-router-dom'
@@ -20,7 +19,6 @@ export const Statusbar = () => {
 
   return (
     <Navbar bg="primary" variant="dark">
-      {/* <Container> */}
       <Nav>
         {isAuth ? (
           <>
@@ -34,7 +32,6 @@ export const Statusbar = () => {
           </>
         )}
       </Nav>
-      {/* </Container> */}
     </Navbar>
   )
 }

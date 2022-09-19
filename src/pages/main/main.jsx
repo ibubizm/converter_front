@@ -31,7 +31,6 @@ export const Main = () => {
       <Tab className="p-3" eventKey="history" title="История">
         <History />
       </Tab>
-      <div>ass</div>
     </Tabs>
   )
 }

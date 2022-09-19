@@ -1,13 +1,12 @@
-import { useEffect } from 'react'
+import { useEffect, memo } from 'react'
 import { useState } from 'react'
 import ListGroup from 'react-bootstrap/ListGroup'
 import { getHistory } from '../../api/featch'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 
-export const History = () => {
+export const History = memo(() => {
   const [history, setHistory] = useState([])
 
   useEffect(() => {
@@ -39,4 +38,4 @@ export const History = () => {
       )}
     </>
   )
-}
+})
